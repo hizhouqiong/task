@@ -1,11 +1,14 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import InputNumber from './InputNumber'
+import confirm from './confirm'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "aaa"
+            value: "aaa",
+            list: ['a', 'b', 'c']
+
         }
     }
     handleChange = (value) => {
@@ -67,6 +70,14 @@ class App extends Component {
                 </div>
             </div>
         )
+    }
+    async componentDidMount(){
+        let res = await confirm("确定删除吗")
+        if(res) {
+            console.log("是")
+        } else {
+            console.log("否")
+        }
     }
 
 }
