@@ -21,10 +21,9 @@ class Confirm extends Component {
     }
 }
 
-let node = null
 const confirm = function (message) {
     return new Promise((resolve, reject) => {
-        node = document.createElement('div')
+        let node = document.createElement('div')
         document.body.appendChild(node)
         ReactDOM.render(<Confirm message={message} ok={() => {
             if (node) {

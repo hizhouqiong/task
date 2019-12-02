@@ -2,6 +2,23 @@ import React, { Component } from 'react'
 import InputNumber from './InputNumber'
 import confirm from './confirm'
 
+class Item extends Component {
+    render() {
+        let { name } = this.props;
+        return (
+            <li>{name}</li>
+        )
+    }
+    async componentDidMount() {
+        let res = await confirm(`确定${this.props.name}挂载成功`);
+        if (res) {
+            console.log("是")
+        } else {
+            console.log("否")
+        }
+    }
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -66,18 +83,19 @@ class App extends Component {
     }
 }`}
                     </pre>
-                    <div>结果:</div>
+                    <div>结果:
+                        <button onClick={() => {
+                            this.setState({
+                                list: ['b', 'c', 'd']
+                            })
+                        }}>change</button>
+                    </div>
+                    <ul>
+                        {this.state.list.map(item => <Item key={item} name={item} />)}
+                    </ul>
                 </div>
             </div>
         )
-    }
-    async componentDidMount(){
-        let res = await confirm("确定删除吗")
-        if(res) {
-            console.log("是")
-        } else {
-            console.log("否")
-        }
     }
 
 }
